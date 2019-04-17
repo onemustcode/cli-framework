@@ -1,0 +1,28 @@
+{
+    "name": "onemustcode/cli-framework",
+    "description": "A simple to use command line interface framework.",
+    "keywords": ["cli", "framework"],
+    "licence": "MIT",
+    "authors": [
+        {
+            "name": "Jeffrey Buitenhuis",
+            "email": "jeffrey@onemustcode.nl"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.2",
+        "mnapoli/silly": "^1.7",
+        "mnapoli/silly-php-di": "^1.2",
+        "vlucas/phpdotenv": "^3.3"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "OneMustCode\\CliFramework\\": "src/"
+        }
+    }
+}
