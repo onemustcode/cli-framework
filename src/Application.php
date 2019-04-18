@@ -4,6 +4,7 @@ namespace OneMustCode\CliFramework;
 
 use OneMustCode\CliFramework\Providers\CommandProvider;
 use OneMustCode\CliFramework\Providers\ConfigProvider;
+use OneMustCode\CliFramework\Services\Config\ConfigServiceInterface;
 
 class Application
 {
@@ -73,6 +74,14 @@ class Application
     }
 
     /**
+     * @return string
+     */
+    public function getEnvironment(): string
+    {
+        return $this->get(ConfigServiceInterface::class)->get('environment');
+    }
+
+    /**
      * Loads the default application providers
      */
     private function loadDefaultProviders(): void
@@ -120,12 +129,14 @@ class Application
             return;
         }
 
+        $this->started = true;
+
+        $this->bind(Application::class, $this);
+
         $this->loadDefaultProviders();
 
         $this->loadCustomProviders();
 
         $this->app->run();
-
-        $this->started = true;
     }
 }
