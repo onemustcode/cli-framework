@@ -17,10 +17,11 @@ class ConfigProvider extends AbstractProvider
             $this->app->getBasePath()
         )->load();
 
-        $this->app->bind(ConfigServiceInterface::class, function () {
-           return new ConfigService(
-               require_once $this->app->getAppPath('config.php')
-           );
-        });
+        $service = new ConfigService(
+            require_once $this->app->getAppPath('config.php')
+        );
+
+        $this->app->bind(ConfigServiceInterface::class, $service);
+        $this->app->bind('config', $service);
     }
 }

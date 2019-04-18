@@ -18,12 +18,22 @@ class ConfigService implements ConfigServiceInterface
     /**
      * @inheritdoc
      */
-    public function get(string $name, $default = null)
+    public function get(string $key, $default = null)
     {
-        if (isset($this->config[$name]) === false) {
-            return $default;
+        $config = $this->config;
+
+        if (strpos($key, '.') === false) {
+            return $config[$key] ?? $default;
         }
 
-        return $this->config[$name];
+        foreach (explode('.', $key) as $segment) {
+            if (is_array($config) && array_key_exists($segment, $config)) {
+                $config = $config[$segment];
+            } else {
+                return $default;
+            }
+        }
+
+        return $config;
     }
 }

@@ -5,9 +5,9 @@ namespace OneMustCode\CliFramework\Services\Config;
 interface ConfigServiceInterface
 {
     /**
-     * @param string $name
+     * @param string $key
      * @param null $default
      * @return mixed
      */
-    public function get(string $name, $default = null);
+    public function get(string $key, $default = null);
 }
