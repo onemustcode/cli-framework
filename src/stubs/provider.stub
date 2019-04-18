@@ -1,0 +1,16 @@
+<?php declare(strict_types=1);
+
+namespace App\Providers;
+
+use OneMustCode\CliFramework\Providers\AbstractProvider;
+
+class {provider} extends AbstractProvider
+{
+    /**
+     * @inheritdoc
+     */
+    public function load(): void
+    {
+        //
+    }
+}

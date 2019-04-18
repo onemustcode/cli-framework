@@ -56,6 +56,24 @@ class Application
     }
 
     /**
+     * @param string $path
+     * @return string
+     */
+    public function getCommandsPath(string $path = ''): string
+    {
+        return $this->getAppPath('Commands' . ($path ? DIRECTORY_SEPARATOR . $path : $path));
+    }
+
+    /**
+     * @param string $path
+     * @return string
+     */
+    public function getProvidersPath(string $path = ''): string
+    {
+        return $this->getAppPath('Providers' . ($path ? DIRECTORY_SEPARATOR . $path : $path));
+    }
+
+    /**
      * @param string $name
      * @param $value
      */
@@ -96,6 +114,8 @@ class Application
      */
     private function loadCustomProviders(): void
     {
+        $this->customProviders = $this->get(ConfigServiceInterface::class)->get('providers');
+
         foreach ($this->customProviders as $provider) {
             $this->loadProvider($provider);
         }

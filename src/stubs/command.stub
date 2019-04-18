@@ -1,0 +1,16 @@
+<?php declare(strict_types=1);
+
+namespace App\Commands;
+
+use Symfony\Component\Console\Output\OutputInterface;
+
+class {command}
+{
+    /**
+     * @param OutputInterface $output
+     */
+    public function __invoke(OutputInterface $output)
+    {
+        $output->writeln('My {command}!');
+    }
+}

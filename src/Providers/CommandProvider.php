@@ -3,6 +3,7 @@
 namespace OneMustCode\CliFramework\Providers;
 
 use OneMustCode\CliFramework\Commands\CreateCommandCommand;
+use OneMustCode\CliFramework\Commands\CreateProviderCommand;
 use OneMustCode\CliFramework\Commands\EnvironmentCommand;
 use OneMustCode\CliFramework\Services\Command\CommandService;
 use OneMustCode\CliFramework\Services\Command\CommandServiceInterface;
@@ -21,6 +22,8 @@ class CommandProvider extends AbstractProvider
         });
 
         $this->registerDefaultCommands();
+
+        $this->registerCustomCommands();
     }
 
     /**
@@ -29,6 +32,17 @@ class CommandProvider extends AbstractProvider
     private function registerDefaultCommands(): void
     {
         $this->app->registerCommand('environment', EnvironmentCommand::class);
-        $this->app->registerCommand('create', CreateCommandCommand::class);
+        $this->app->registerCommand('create:command [name] [class]', CreateCommandCommand::class);
+        $this->app->registerCommand('create:provider [class]', CreateProviderCommand::class);
+    }
+
+    /**
+     * Registers the custom defined commands
+     */
+    private function registerCustomCommands(): void
+    {
+        $app = $this->app;
+
+        require_once $app->getAppPath('commands.php');
     }
 }
