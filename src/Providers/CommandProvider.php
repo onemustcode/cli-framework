@@ -31,9 +31,14 @@ class CommandProvider extends AbstractProvider
      */
     private function registerDefaultCommands(): void
     {
-        $this->app->registerCommand('environment', EnvironmentCommand::class);
-        $this->app->registerCommand('create:command [name] [class]', CreateCommandCommand::class);
-        $this->app->registerCommand('create:provider [class]', CreateProviderCommand::class);
+        $this->app->registerCommand('environment', EnvironmentCommand::class)
+            ->setDescription('Returns the application environment');
+
+        $this->app->registerCommand('create:command [name] [class]', CreateCommandCommand::class)
+            ->setDescription('Create\'s a new command');
+
+        $this->app->registerCommand('create:provider [class]', CreateProviderCommand::class)
+            ->setDescription('Create\'s new provider.');
     }
 
     /**

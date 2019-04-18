@@ -5,6 +5,7 @@ namespace OneMustCode\CliFramework;
 use OneMustCode\CliFramework\Providers\CommandProvider;
 use OneMustCode\CliFramework\Providers\ConfigProvider;
 use OneMustCode\CliFramework\Services\Config\ConfigServiceInterface;
+use Silly\Command\Command;
 
 class Application
 {
@@ -134,10 +135,11 @@ class Application
      *
      * @param string $expression
      * @param $callable
+     * @return Command
      */
-    public function registerCommand(string $expression, $callable): void
+    public function registerCommand(string $expression, $callable): Command
     {
-        $this->app->command($expression, $callable);
+        return $this->app->command($expression, $callable);
     }
 
     /**
