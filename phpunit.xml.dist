@@ -9,9 +9,7 @@
          processIsolation="false"
          stopOnError="false"
          stopOnFailure="false"
-         syntaxCheck="true"
-         verbose="true"
->
+         verbose="true">
     <php>
         <ini name="error_reporting" value="-1" />
     </php>
