@@ -13,9 +13,7 @@ class ConfigProvider extends AbstractProvider
      */
     public function load(): void
     {
-        Dotenv::create(
-            $this->app->getBasePath()
-        )->load();
+        $this->loadDotenv();
 
         $service = new ConfigService(
             require_once $this->app->getAppPath('config.php')
@@ -23,5 +21,17 @@ class ConfigProvider extends AbstractProvider
 
         $this->app->bind(ConfigServiceInterface::class, $service);
         $this->app->bind('config', $service);
+    }
+
+    /**
+     * Loads the dotenv if a .env file exists
+     */
+    private function loadDotenv(): void
+    {
+        if (file_exists($this->app->getBasePath('.env'))) {
+            Dotenv::create(
+                $this->app->getBasePath()
+            )->load();
+        }
     }
 }

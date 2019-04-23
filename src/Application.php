@@ -154,6 +154,7 @@ class Application
         $this->started = true;
 
         $this->bind(Application::class, $this);
+        $this->bind('app', $this);
 
         $this->loadDefaultProviders();
 
